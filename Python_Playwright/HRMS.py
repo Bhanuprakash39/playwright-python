@@ -33,6 +33,6 @@ with sync_playwright() as playwright:
     page.get_by_label("Reporting manager").select_option("Vikram Nair")
 
     print("Task Completed Successfully")
-    
+
     #close the browser
     browser.close()
