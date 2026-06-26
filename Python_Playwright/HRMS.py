@@ -12,9 +12,11 @@ with sync_playwright() as playwright:
     page.get_by_role("textbox").first.fill("admin")
     page.get_by_role("textbox").last.fill("admin123")
     page.get_by_role("button").click()
-    # message=page.locator("#welcome-alert")
-    # expect(message).to_have_text(" Payroll for June has been processed successfully.")
 
+    #validation
+    expect(page.get_by_text(" Payroll for June has been processed successfully.")).to_be_visible()
+
+    #page actions
     page.get_by_role("link",name="Employees").click()
     page.get_by_role("link",name="+ Add Employee").click()
     page.get_by_role("textbox").nth(0).fill("Bhanuprakash")
@@ -29,7 +31,8 @@ with sync_playwright() as playwright:
     page.get_by_label("Employment type").select_option("Contract")
     page.get_by_role("textbox",name="Date of joining").fill("2026-06-23")
     page.get_by_label("Reporting manager").select_option("Vikram Nair")
-    time.sleep(5)
 
     print("Task Completed Successfully")
+
+    #close the browser
     browser.close()
